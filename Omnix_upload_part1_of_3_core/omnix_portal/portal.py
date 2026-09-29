@@ -388,12 +388,7 @@ def footer():
 # ---------------------------------------------------------------------------
 def page_home():
     st.markdown("## About Omnix")
-    st.markdown(
-        "<p class='omx-lead'>Omnix brings metabolomics, proteomics and transcriptomics analysis together on one "
-        "platform. Each platform takes your data from the raw matrix to biological interpretation through the same "
-        "guided sequence: upload, quality control, normalization, statistics, visualization and pathway analysis. "
-        "Every step shows what was done and why, and every figure and table can be exported for your "
-        "manuscript.</p>", unsafe_allow_html=True)
+    st.markdown( "<p class='omx-lead'><strong>One platform. Three omics. From data to discovery.</strong><br>" "Omnix unifies <strong>metabolomics, proteomics, and transcriptomics</strong> in a single, " "streamlined analysis platform. Transform complex datasets into meaningful biological insights " "through an intuitive, guided workflow—from data upload and quality control to normalization, " "statistical analysis, visualization, and pathway interpretation.<br><br>" "Built for modern life-science research, Omnix makes every analysis " "<strong>transparent, reproducible, and publication-ready</strong>. Understand what happens at " "every step, explore your results with confidence, and export high-quality figures and tables " "directly for your research and manuscripts.<br><br>" "<strong>From raw data to biological discovery—Omnix brings the entire analysis workflow together.</strong>" "</p>", unsafe_allow_html=True )
     values = [
         ("workflow", "One guided workflow", "The same steps across all three platforms, from data upload to "
                                             "pathway and network analysis, so a multi-omics study reads as one analysis."),

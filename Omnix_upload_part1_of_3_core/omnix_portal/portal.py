@@ -180,7 +180,18 @@ def _styles(page, portal_page):
 [class*="st-key-omnix_demo_banner"] [data-testid="stButton"] button p {{ color: #8A4B08 !important; font-weight: 600 !important; font-size: 14px !important; }}
 
 /* home */
-.omx-lead {{ font-size: 19px; color: #2C3836; max-width: 980px; line-height: 1.6; }}
+.omx-lead {{ font-size: 19px; color: #2C3836; line-height: 1.6; }}
+.omx-about {{ width: 100%; margin: 0 0 22px 0; }}
+.omx-about .hl {{ font-family: 'Sora', system-ui, sans-serif; font-size: 26px; font-weight: 700; color: {TEAL_DARK};
+  line-height: 1.3; margin: 0 0 12px 0; }}
+.omx-about p {{ font-size: 18px; color: #2C3836; line-height: 1.65; margin: 0 0 12px 0; }}
+.omx-about p.close {{ font-weight: 600; color: {INK}; margin-bottom: 0; }}
+.omx-feature-card {{ background: #FFFFFF; border: 1px solid {LINE}; border-radius: 14px; padding: 22px 22px 20px 22px;
+  height: 100%; min-height: 300px; box-shadow: 0 2px 10px rgba(17,24,22,0.04); margin-bottom: 18px; }}
+.omx-feature-icon {{ width: 48px; height: 48px; border-radius: 12px; background: #E3F2EF; display: flex;
+  align-items: center; justify-content: center; margin-bottom: 12px; }}
+.omx-feature-card h3 {{ margin: 0 0 6px 0 !important; padding: 0 !important; font-size: 19px !important; color: {INK}; }}
+.omx-feature-card p {{ margin: 0 !important; font-size: 15.5px; color: {INK2}; line-height: 1.55; }}
 .omx-value {{ background: #FFFFFF; border: 1px solid {LINE}; border-radius: 12px; padding: 18px 20px; height: 100%; }}
 .omx-value h4 {{ margin: 10px 0 6px 0 !important; padding: 0 !important; font-size: 18px !important; }}
 .omx-value p {{ margin: 0 !important; font-size: 15px; color: {INK2}; line-height: 1.5; }}
@@ -388,24 +399,35 @@ def footer():
 # ---------------------------------------------------------------------------
 def page_home():
     st.markdown("## About Omnix")
-    st.markdown(
-        "<p class='omx-lead'>Omnix brings metabolomics, proteomics and transcriptomics analysis together on one "
-        "platform. Each platform takes your data from the raw matrix to biological interpretation through the same "
-        "guided sequence: upload, quality control, normalization, statistics, visualization and pathway analysis. "
-        "Every step shows what was done and why, and every figure and table can be exported for your "
-        "manuscript.</p>", unsafe_allow_html=True)
-    values = [
-        ("workflow", "One guided workflow", "The same steps across all three platforms, from data upload to "
-                                            "pathway and network analysis, so a multi-omics study reads as one analysis."),
-        ("stats", "Statistics you can report", "QC-based filtering, established normalization methods and "
-                                               "multiple-testing-corrected statistics, each explained in the tutorials."),
-        ("figure", "Publication-ready output", "Figures in PNG, JPEG, TIFF, SVG or PDF at up to 600 dpi, and every "
-                                               "result table as a CSV file."),
+    about = [
+        "Omnix unifies metabolomics, proteomics, and transcriptomics in a single, streamlined analysis platform. "
+        "Transform complex datasets into meaningful biological insights through an intuitive, guided workflow—from "
+        "data upload and quality control to normalization, statistical analysis, visualization, and pathway "
+        "interpretation.",
+        "Built for modern life-science research, Omnix makes every analysis transparent, reproducible, and "
+        "publication-ready. Understand what happens at every step, explore your results with confidence, and export "
+        "high-quality figures and tables directly for your research and manuscripts.",
     ]
-    cols = st.columns(3, gap="medium")
-    for col, (icon, title, text) in zip(cols, values):
-        col.markdown(f"<div class='omx-value'>{_svg(ICONS[icon], 26)}<h4>{title}</h4><p>{text}</p></div>",
-                     unsafe_allow_html=True)
+    st.markdown("<div class='omx-about'><div class='hl'>One platform. Three omics. From data to discovery.</div>"
+                + "".join(f"<p>{html.escape(t)}</p>" for t in about)
+                + "<p class='close'>From raw data to biological discovery—Omnix brings the entire analysis workflow "
+                  "together.</p></div>", unsafe_allow_html=True)
+    features = [
+        ("workflow", "One guided workflow",
+         "A consistent analysis experience across metabolomics, proteomics, and transcriptomics, from data upload "
+         "and quality control to statistics, visualization, and biological interpretation."),
+        ("stats", "Statistics you can report",
+         "QC-based filtering, established normalization methods, statistical testing, multiple-testing correction, "
+         "and clearly documented analysis steps designed for research reporting."),
+        ("figure", "Publication-ready output",
+         "Export high-resolution figures and analysis tables in commonly used formats, making it easy to move from "
+         "results to reports, presentations, and manuscripts."),
+    ]
+    col1, col2, col3 = st.columns(3, gap="medium")
+    for col, (icon, title, text) in zip((col1, col2, col3), features):
+        # one line of HTML: indented multi-line HTML would be shown as a code block by Markdown
+        col.markdown(f'<div class="omx-feature-card"><div class="omx-feature-icon">{_svg(ICONS[icon], 26)}</div>'
+                     f'<h3>{html.escape(title)}</h3><p>{html.escape(text)}</p></div>', unsafe_allow_html=True)
 
     st.markdown("## Choose an analysis platform")
     cols = st.columns(3, gap="medium")

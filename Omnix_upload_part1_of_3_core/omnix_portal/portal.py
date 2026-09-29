@@ -383,256 +383,44 @@ def footer():
     st.markdown(f'<div class="omx-footer"><b>{config.BRAND}™</b> · {config.TAGLINE}</div>', unsafe_allow_html=True)
 
 
-# ============================================================
-# ABOUT OMNIX
-# ============================================================
-
-st.markdown(
-    """
-    <style>
-
-    /* --------------------------------------------------------
-       Use the full available Streamlit page width
-       -------------------------------------------------------- */
-    .block-container {
-        max-width: 100% !important;
-        width: 100% !important;
-        padding-left: 2.5rem !important;
-        padding-right: 2.5rem !important;
-    }
-
-    /* --------------------------------------------------------
-       About Omnix text section
-       -------------------------------------------------------- */
-    .omx-about-content {
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .omx-about-content .omx-lead {
-        width: 100%;
-        max-width: none;
-        margin: 0 0 20px 0;
-        font-size: 19px;
-        line-height: 1.55;
-        color: #354240;
-    }
-
-    .omx-about-content .omx-lead:first-child {
-        margin-bottom: 8px;
-    }
-
-    .omx-about-content .omx-lead:last-child {
-        margin-top: 28px;
-        margin-bottom: 30px;
-    }
-
-    /* --------------------------------------------------------
-       Feature cards
-       -------------------------------------------------------- */
-    .omx-feature-card {
-        width: 100%;
-        min-height: 235px;
-        padding: 28px 30px;
-        border: 1px solid #d9e0df;
-        border-radius: 16px;
-        background: #ffffff;
-        box-sizing: border-box;
-        transition: all 0.2s ease;
-    }
-
-    .omx-feature-card:hover {
-        border-color: #b8c9c6;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        transform: translateY(-2px);
-    }
-
-    .omx-feature-icon {
-        font-size: 30px;
-        line-height: 1;
-        color: #087f73;
-        margin-bottom: 18px;
-    }
-
-    .omx-feature-card h3 {
-        margin: 0 0 12px 0;
-        font-size: 24px;
-        font-weight: 700;
-        color: #111918;
-    }
-
-    .omx-feature-card p {
-        margin: 0;
-        font-size: 17px;
-        line-height: 1.55;
-        color: #596563;
-    }
-
-    /* --------------------------------------------------------
-       Responsive layout
-       -------------------------------------------------------- */
-    @media (max-width: 900px) {
-
-        .block-container {
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-        }
-
-        .omx-about-content .omx-lead {
-            font-size: 17px;
-        }
-
-        .omx-feature-card {
-            min-height: auto;
-            margin-bottom: 16px;
-        }
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# ============================================================
-# ABOUT OMNIX — INTRODUCTION
-# ============================================================
-
-st.markdown(
-    """
-    <div class="omx-about-content">
-
-        <p class="omx-lead">
-            <strong>One platform. Three omics. From data to discovery.</strong>
-        </p>
-
-        <p class="omx-lead">
-            Omnix unifies <strong>metabolomics, proteomics, and transcriptomics</strong>
-            in a single, streamlined analysis platform. Transform complex datasets into
-            meaningful biological insights through an intuitive, guided workflow—from
-            <strong>data upload and quality control to normalization, statistical analysis,
-            visualization, and pathway interpretation</strong>.
-        </p>
-
-        <p class="omx-lead">
-            Built for modern life-science research, Omnix makes every analysis
-            <strong>transparent, reproducible, and publication-ready</strong>. Understand
-            what happens at every step, explore your results with confidence, and export
-            high-quality figures and tables directly for your research and manuscripts.
-        </p>
-
-        <p class="omx-lead">
-            <strong>
-                From raw data to biological discovery—Omnix brings the entire
-                analysis workflow together.
-            </strong>
-        </p>
-
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# ============================================================
-# ABOUT OMNIX — FEATURE CARDS
-# ============================================================
-
-col1, col2, col3 = st.columns(3, gap="large")
-
-
-# ------------------------------------------------------------
-# CARD 1
-# ------------------------------------------------------------
-
-with col1:
-
+# ---------------------------------------------------------------------------
+# home
+# ---------------------------------------------------------------------------
+def page_home():
+    st.markdown("## About Omnix")
     st.markdown(
-        """
-        <div class="omx-feature-card">
+        "<p class='omx-lead'>Omnix brings metabolomics, proteomics and transcriptomics analysis together on one "
+        "platform. Each platform takes your data from the raw matrix to biological interpretation through the same "
+        "guided sequence: upload, quality control, normalization, statistics, visualization and pathway analysis. "
+        "Every step shows what was done and why, and every figure and table can be exported for your "
+        "manuscript.</p>", unsafe_allow_html=True)
+    values = [
+        ("workflow", "One guided workflow", "The same steps across all three platforms, from data upload to "
+                                            "pathway and network analysis, so a multi-omics study reads as one analysis."),
+        ("stats", "Statistics you can report", "QC-based filtering, established normalization methods and "
+                                               "multiple-testing-corrected statistics, each explained in the tutorials."),
+        ("figure", "Publication-ready output", "Figures in PNG, JPEG, TIFF, SVG or PDF at up to 600 dpi, and every "
+                                               "result table as a CSV file."),
+    ]
+    cols = st.columns(3, gap="medium")
+    for col, (icon, title, text) in zip(cols, values):
+        col.markdown(f"<div class='omx-value'>{_svg(ICONS[icon], 26)}<h4>{title}</h4><p>{text}</p></div>",
+                     unsafe_allow_html=True)
 
-            <div class="omx-feature-icon">
-                ☷
-            </div>
-
-            <h3>
-                One guided workflow
-            </h3>
-
-            <p>
-                A consistent analysis experience across metabolomics,
-                proteomics, and transcriptomics—from data upload and
-                quality control to statistics, visualization, and
-                biological interpretation.
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-# ------------------------------------------------------------
-# CARD 2
-# ------------------------------------------------------------
-
-with col2:
-
-    st.markdown(
-        """
-        <div class="omx-feature-card">
-
-            <div class="omx-feature-icon">
-                ▥
-            </div>
-
-            <h3>
-                Statistics you can report
-            </h3>
-
-            <p>
-                QC-based filtering, established normalization methods,
-                statistical testing, multiple-testing correction, and
-                clearly documented analysis steps designed for research
-                reporting.
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-# ------------------------------------------------------------
-# CARD 3
-# ------------------------------------------------------------
-
-with col3:
-
-    st.markdown(
-        """
-        <div class="omx-feature-card">
-
-            <div class="omx-feature-icon">
-                ▱
-            </div>
-
-            <h3>
-                Publication-ready output
-            </h3>
-
-            <p>
-                Export high-resolution figures and analysis tables in
-                commonly used formats, making it easy to move from
-                results to reports, presentations, and manuscripts.
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("## Choose an analysis platform")
+    cols = st.columns(3, gap="medium")
+    for col, k in zip(cols, APPS):
+        p = config.PLATFORMS[k]
+        with col, st.container(key=f"omnix_card_{k}", border=True, height="stretch"):
+            chips = "".join(f'<span class="omx-chip">{html.escape(c)}</span>' for c in p["chips"])
+            items = "".join(f"<li>{html.escape(h)}</li>" for h in p["highlights"])
+            st.markdown(f'<div class="omx-card"><div class="omx-card-icon">{_svg(ICONS[k])}</div>'
+                        f'<h2>{p["name"]}</h2><div class="sub">{html.escape(p["subtitle"])}</div>'
+                        f'<div>{chips}</div><ul>{items}</ul></div>', unsafe_allow_html=True)
+            with st.container(key=f"omnix_open_{k}"):
+                st.button(f"Open {p['name']}  →", key=f"omnix_openbtn_{k}", on_click=go, args=(k,))
+    st.markdown("<div class='omx-note'>Try any platform now on its built-in demo datasets. "
+                "A subscription lets you upload and analyze your own data.</div>", unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------

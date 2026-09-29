@@ -283,10 +283,14 @@ table.omx-spec td code {{ font-size: 13px; }}
 # header, menus, side panel
 # ---------------------------------------------------------------------------
 def _contact_lines():
+    """Contact rows from config.CONTACT; empty fields are not shown."""
     c = config.CONTACT
-    rows = [("Email", html.escape(c["email"])), ("Phone", html.escape(c["phone"])),
-            ("Address", f"{html.escape(c['organization'])}<br>{html.escape(c['address'])}")]
-    return "".join(f'<div class="omx-kv"><div><div class="k">{k}</div><div class="v">{v}</div></div></div>' for k, v in rows)
+    street, _, city = c.get("address", "").partition(", ")
+    address = "<br>".join(html.escape(x) for x in (c.get("organization", ""), street, city) if x)
+    rows = [("Email", html.escape(c.get("email", ""))), ("Phone", html.escape(c.get("phone", ""))),
+            ("Address", address)]
+    return "".join(f'<div class="omx-kv"><div><div class="k">{k}</div><div class="v">{v}</div></div></div>'
+                   for k, v in rows if v)
 
 
 def _nav():

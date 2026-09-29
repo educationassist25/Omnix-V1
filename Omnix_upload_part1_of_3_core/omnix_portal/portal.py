@@ -388,19 +388,43 @@ def footer():
 # ---------------------------------------------------------------------------
 def page_home():
     st.markdown("## About Omnix")
-    st.markdown( "<p class='omx-lead'><strong>One platform. Three omics. From data to discovery.</strong><br>" "Omnix unifies <strong>metabolomics, proteomics, and transcriptomics</strong> in a single, " "streamlined analysis platform. Transform complex datasets into meaningful biological insights " "through an intuitive, guided workflow—from data upload and quality control to normalization, " "statistical analysis, visualization, and pathway interpretation.<br><br>" "Built for modern life-science research, Omnix makes every analysis " "<strong>transparent, reproducible, and publication-ready</strong>. Understand what happens at " "every step, explore your results with confidence, and export high-quality figures and tables " "directly for your research and manuscripts.<br><br>" "<strong>From raw data to biological discovery—Omnix brings the entire analysis workflow together.</strong>" "</p>", unsafe_allow_html=True )
-    values = [
-        ("workflow", "One guided workflow", "The same steps across all three platforms, from data upload to "
-                                            "pathway and network analysis, so a multi-omics study reads as one analysis."),
-        ("stats", "Statistics you can report", "QC-based filtering, established normalization methods and "
-                                               "multiple-testing-corrected statistics, each explained in the tutorials."),
-        ("figure", "Publication-ready output", "Figures in PNG, JPEG, TIFF, SVG or PDF at up to 600 dpi, and every "
-                                               "result table as a CSV file."),
-    ]
-    cols = st.columns(3, gap="medium")
-    for col, (icon, title, text) in zip(cols, values):
-        col.markdown(f"<div class='omx-value'>{_svg(ICONS[icon], 26)}<h4>{title}</h4><p>{text}</p></div>",
-                     unsafe_allow_html=True)
+    st.markdown("""
+    <div class="omx-feature-card">
+        <div class="omx-feature-icon">☷</div>
+        <h3>One guided workflow</h3>
+        <p>
+            A consistent analysis experience across metabolomics, proteomics,
+            and transcriptomics—from data upload and quality control to
+            statistics, visualization, and biological interpretation.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="omx-feature-card">
+        <div class="omx-feature-icon">▥</div>
+        <h3>Statistics you can report</h3>
+        <p>
+            QC-based filtering, established normalization methods, statistical
+            testing, multiple-testing correction, and clearly documented
+            analysis steps designed for research reporting.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div class="omx-feature-card">
+        <div class="omx-feature-icon">▱</div>
+        <h3>Publication-ready output</h3>
+        <p>
+            Export high-resolution figures and analysis tables in commonly
+            used formats, making it easy to move from results to reports,
+            presentations, and manuscripts.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("## Choose an analysis platform")
     cols = st.columns(3, gap="medium")

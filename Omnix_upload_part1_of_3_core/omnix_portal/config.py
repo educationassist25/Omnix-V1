@@ -9,10 +9,10 @@ TAGLINE = "Integrated Multi-Omics Data Analytics"
 
 # ---- Contact (Contact menu and Contact page) ------------------------------------------
 CONTACT = {
-    "email": "[CONTACT EMAIL]",
-    "phone": "[PHONE NUMBER]",
-    "organization": "[ORGANIZATION]",
-    "address": "[STREET, CITY, STATE ZIP]",
+    "email": "education.assist25@gmail.com",
+    "phone": "",                                   # leave empty to hide
+    "organization": "",                            # leave empty to hide
+    "address": "3606 Park Vista Dr, Missouri City, TX 77459",
 }
 
 # ---- Subscription page -----------------------------------------------------------------
